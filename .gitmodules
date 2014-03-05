@@ -1,0 +1,3 @@
+[submodule "Swadl"]
+	path = Swadl
+	url = https://github.com/ehearty/Swadl.git
