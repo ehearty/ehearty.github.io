@@ -2,8 +2,13 @@
   <head>
     <script src="jquery.js"></script>
     <style>
+      @font-face {
+            font-family: computer;
+                src: url('Paskowy.ttf');
+              }
       body {margin:0px; padding:0px;}
-      .screen {height:480px;width:320px;background-color:silver}
+      button {font-family:computer;font-size:32px;}
+      .screen {height:480px;width:320px;background-color:silver;}
       .screen .container{width:318px;border-color:black; border-style:solid; border-width:0px 0px 1px 0px}
       .pattern {height: 60px;}
       .display {height: 60px;}
@@ -85,11 +90,11 @@
       <div class="keyboard container">
         <table cellspacing="0" cellpadding="0">
           <tr>
-            <td class="clear">clear</td>
+            <td class="clear"><button>clear</button></td>
             <td class='key' val="."></td>
             <td class='key' val="^"></td>
             <td class='key' val="*"></td>
-            <td class="backspace">backspace</td>
+            <td class="backspace"><button>backspace</button></td>
           </tr>
           <tr>
             <td class="key" val="a"></td>
@@ -100,7 +105,7 @@
           </tr>
           <tr>
             <td colspan="4"></td>
-            <td class="enter">enter</td>
+            <td class="enter"><button>enter</button></td>
           </tr>
         </table>
       </div>
