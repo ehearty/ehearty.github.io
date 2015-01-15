@@ -17,30 +17,28 @@
     </style>
     <script>
       $(function() {
-      $( "#catalog img" ).draggable({
-      appendTo: "body",
-      helper: "clone"
-      });
-      $( "#cart" ).droppable({
-      activeClass: "ui-state-default",
-      hoverClass: "ui-state-hover",
-      accept: ":not(.ui-sortable-helper)",
-      drop: function( event, ui ) {
-      $( this ).find( ".placeholder" ).remove();
-      $("<img src='"+$(ui.draggable)[0].src+"'></img>").appendTo(this);
-      }
-      }).sortable({
-      items:'img',
-      forcePlaceholderSize:true,
-      forceHelperSize:true,
-      distance:5,
-      axis:'x',
-      sort: function() {
-      // gets added unintentionally by droppable interacting with sortable
-      // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
-      $( this ).removeClass( "ui-state-default" );
-      }
-      });
+        $( "#catalog img" ).draggable({
+          appendTo: "body",
+          helper: "clone"
+        });
+        $( "#cart" ).droppable({
+          activeClass: "ui-state-default",
+          hoverClass: "ui-state-hover",
+          accept: ":not(.ui-sortable-helper)",
+          drop: function( event, ui ) {
+            $( this ).find( ".placeholder" ).remove();
+            $("<img src='"+$(ui.draggable)[0].src+"'></img>").appendTo(this);
+          }
+          }).sortable({
+          items:'img',
+          forcePlaceholderSize:true,
+          forceHelperSize:true,
+          distance:5,
+          axis:'x',
+          sort: function() {
+            $( this ).removeClass( "ui-state-default" );
+          }
+        });
       });
     </script>
   </head>
@@ -50,14 +48,14 @@
       <div id="catalog">
         <img src='bug.png'></img>
         <img src='bit.png'></img>
-        </div>
+      </div>
     </div>
 
     <br>
 
     <div id="cart">
       <h1 class="ui-widget-header">Instructions</h1>
-          <li class="placeholder">Tell Reggie what he's looking for</li>
+      <li class="placeholder">Tell Reggie what he's looking for</li>
     </div>
 
 
