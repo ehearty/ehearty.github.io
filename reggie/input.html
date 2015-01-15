@@ -27,14 +27,21 @@
         els.push(el);
         display();
       }
+      function enter(){
+        var pattern = $('.pattern').html();
+        var input = $('.display').html();
+        debugger;
+      }
       function remove(){
         els.pop();
         display();
       }
       function init(){
+        $('.pattern').html('ab');
         $('.key').click(function(){add(this);});
         $('.clear').click(function(){clear();});
         $('.backspace').click(function(){remove();});
+        $('.enter').click(function(){enter();});
       }
 
       </script>
@@ -42,7 +49,6 @@
     <body onload="init()">
       <div class="screen">
         <div class="pattern container">
-          ab
         </div>
         <div class="display container">
         </div>
@@ -60,7 +66,7 @@
             </tr>
             <tr>
               <td colspan="4"></td>
-              <td>enter</td>
+              <td class="enter">enter</td>
             </tr>
           </table>
         </div>
