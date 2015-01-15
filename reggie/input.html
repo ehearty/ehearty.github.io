@@ -37,6 +37,7 @@
         display();
       }
       function init(){
+        $('.pattern').html('ab');
         $('.key').click(function(){add(this);});
         $('.clear').click(function(){clear();});
         $('.backspace').click(function(){remove();});
@@ -48,7 +49,6 @@
     <body onload="init()">
       <div class="screen">
         <div class="pattern container">
-          ab
         </div>
         <div class="display container">
         </div>
