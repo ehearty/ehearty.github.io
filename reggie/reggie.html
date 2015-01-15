@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>jQuery UI Droppable - Shopping Cart Demo</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <style>
+      h1 { padding: .2em; margin: 0; }
+      #products { width: 500px; margin-right: 2em; }
+      #cart { width: 500px; margin-top: 1em; }
+      #cart div {width:60px; height:60px;}
+      /* style the list to maximize the droppable hitarea */
+      #cart ol { margin: 0; padding: 1em 0 1em 3em; }
+    </style>
+    <script>
+      $(function() {
+      $( "#catalog img" ).draggable({
+      appendTo: "body",
+      helper: "clone"
+      });
+      $( "#cart" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      accept: ":not(.ui-sortable-helper)",
+      drop: function( event, ui ) {
+      $( this ).find( ".placeholder" ).remove();
+      $("<img src='"+$(ui.draggable)[0].src+"'></img>").appendTo(this);
+      }
+      }).sortable({
+      items:'img',
+      forcePlaceholderSize:true,
+      forceHelperSize:true,
+      distance:5,
+      axis:'x',
+      sort: function() {
+      // gets added unintentionally by droppable interacting with sortable
+      // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+      $( this ).removeClass( "ui-state-default" );
+      }
+      });
+      });
+    </script>
+  </head>
+  <body>
+
+    <div id="products">
+      <div id="catalog">
+        <img src='bug.png'></img>
+        <img src='bit.png'></img>
+        </div>
+    </div>
+
+    <br>
+
+    <div id="cart">
+      <h1 class="ui-widget-header">Instructions</h1>
+          <li class="placeholder">Tell Reggie what he's looking for</li>
+    </div>
+
+
+  </body>
+</html>

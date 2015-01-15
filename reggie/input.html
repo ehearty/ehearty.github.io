@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script src="jquery.js"></script>
+    <style>
+      body {margin:0px; padding:0px;}
+      .screen {height:480px;width:320px;background-color:silver}
+      .screen .container{width:318px;border-color:black; border-style:solid; border-width:0px 0px 1px 0px}
+      .pattern {height: 60px;}
+      .display {height: 60px;}
+      .keyboard {height: 240px;width:100%;}
+      table {width:320px; height:100%;}
+      td div{width:64px;text-align:center;background-color:red}
+    </style>
+    <script>
+      var els = [];
+      function clear(){
+        els=[];
+        display();
+      }
+      function display(){
+        $('.display').html('');
+        for (var i = 0; i<els.length; i++){
+          $('.display').append($(els[i]).html());
+        }
+      }
+      function add(el){
+        els.push(el);
+        display();
+      }
+      function remove(){
+        els.pop();
+        display();
+      }
+      function init(){
+        $('.key').click(function(){add(this);});
+        $('.clear').click(function(){clear();});
+        $('.backspace').click(function(){remove();});
+      }
+
+      </script>
+    </head>
+    <body onload="init()">
+      <div class="screen">
+        <div class="pattern container">
+          ab
+        </div>
+        <div class="display container">
+        </div>
+        <div class="keyboard container">
+          <table>
+            <tr>
+              <td class="clear">clear</td><td>*</td><td colspan="3" class="backspace">backspace</td>
+            </tr>
+            <tr>
+              <td><div class="key">a</div></td>
+              <td><div class="key">b</div></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td>enter</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <script>
+      </script>
+    </body>
+  </html>
