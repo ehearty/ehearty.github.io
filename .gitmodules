@@ -7,3 +7,6 @@
 [submodule "jor1k"]
 	path = jor1k
 	url = https://github.com/ehearty/jor1k
+[submodule "chrome-app-samples"]
+	path = chrome-app-samples
+	url = https://github.com/ehearty/chrome-app-samples.git
