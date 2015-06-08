@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type='text/javascript' src='jquery.js'></script>
+        <script type='text/javascript' src='stepper.js'></script>
+        <script type='text/javascript' src='bug.js'></script>
+        <style>
+            #optionTab{
+                background: url('tab.png');
+                position: absolute;
+                right: -106px;
+                top: 70px;
+                height: 82px;
+                z-index: 10;
+                width: 130px;
+                -webkit-transform: rotate(90deg);
+                -webkit-transform-origin: center;
+            }
+        #killTab{
+            position:absolute;
+            right:20px;
+            top:75px;
+            font-size:30px;
+            text-align:left;
+            width:115px;
+        }
+        #options{
+            z-index: 10;
+            position: absolute;
+            width:300px;
+            height:500px;
+            left:-300px;
+        }
+        #optionPanel{
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            height: 350px;
+            color: white;
+            font-family: "Arial";
+            font-size: 40px;
+            text-align: center;
+            background-color: #353d46;
+            border-radius: 0 25px 25px 0;
+        }
+        #settings{
+            height: 47px;
+            position: absolute;
+            left: 42px;
+            top: 37px;
+        }
+        #controls{
+            font-size: 20px;
+            width:90%;
+            text-align:left;
+        }
+        
+        .minus{
+            float: left;
+            font-size: 30px;
+            border-style: solid;
+            border-radius: 8px 0px 0px 8px;
+            border-width: 3px 0px 3px 3px;
+            border-color: white;
+            width: 40px;
+            text-align: center;
+        }
+        #save{
+            font-size:25px;
+        }
+        .plus{
+            float: left;
+            font-size: 30px;
+            border-style: solid;
+            border-radius: 0px 8px 8px 0px;
+            border-width: 3px;
+            border-color: white;
+            width: 40px;
+            text-align: center;
+        }
+        .count{
+            width:25px;
+        }
+        #disappearing{
+            position:absolute;
+            bottom:5px;
+            font-size:20px;
+            width:100%;
+        }
+        </style>
+    </head>
+    <body onload="init();">
+        <script type='text/javascript'>
+            var flies = new BugController({'minBugs':3, 'maxBugs':5, 'mouseOver':'die'});
+            var spiders = new SpiderController({'minBugs':3, 'maxBugs':5, 'maxSpeed':30, 'mouseOver':'die'});
+            var open = false;
+            var timeToDisappear = 10;
+            var close = function(){
+                $('#options').animate({left:"-300px"},1000);
+                open = false;
+                timeToDisappear = 10;
+            }
+            function init(){
+                $('#killcount').html('0');
+                createSteppers();
+                $('#optionTab').click(function(){
+                                          $('#options').animate({left:(open ? "-300px" : "0px")},1000);
+                                          open = !open;
+                                          $('#countdown').html(timeToDisappear);
+                                          var disappear = function(){
+                                              if (timeToDisappear==0){
+                                                  close();
+                                              }
+                                              else{
+                                                      $('#countdown').html(timeToDisappear);
+                                                      timeToDisappear--;
+                                                      setTimeout(function(){disappear();},1000);
+                                              }
+                                          }
+                                          if (open){
+                                            setTimeout(function(){disappear();},1000);
+                                          }
+                                          
+                                          $('#optionPanel').click(function(){timeToDisappear = 10;});
+                                      });
+                $('#save').click(function(){
+                                 var floptions = flies.options;
+                                 flies.end();
+                                 flies = new BugController(floptions);
+                                 var spoptions = spiders.options;
+                                 spiders.end();
+                                 spiders = new SpiderController(spoptions);
+                                 close();
+                                 });
+                }
+                                      </script>
+        <div id="options">
+            <div id="optionTab">
+                <img id="settings" src="settings.png"></img>
+            </div>
+            <div id="optionPanel">Options
+                <table align="center" id='controls'>
+                    <tr controller="flies" option="minBugs">
+                        <td>Min Bugs:</td>
+                        <td class="count"></td>
+                        <td><div class="stepper"></div></td>
+                    </tr>
+                    <tr controller="flies" option="maxBugs">
+                        <td>Max Bugs:</td>
+                        <td class="count"></td>
+                        <td><div class="stepper"></div></td>
+                    </tr>
+                    <tr controller="spiders" option="minBugs">
+                        <td>Min Spiders:</td>
+                        <td class="count"></td>
+                        <td><div class="stepper"></div></td>
+                    </tr>
+                    <tr controller="spiders" option="maxBugs">
+                        <td>Max Spiders:</td>
+                        <td class="count"></td>
+                        <td><div class="stepper"></div></td>
+                    </tr>
+                </table>
+                <button id="save">Save and Reset</button>
+                <div id="disappearing">Disappearing in <div id="countdown"></div></div>
+            </div>
+        </div>
+        <div id="killTab">Kills: <div id="killcount" style="float:right"></div></div>
+        
+    </body>
+</html>
