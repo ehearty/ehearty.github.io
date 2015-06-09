@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <meta name="apple-mobile-web-app-capable" content="yes">
         <script type='text/javascript' src='jquery.js'></script>
         <script type='text/javascript' src='stepper.js'></script>
         <script type='text/javascript' src='bug.js'></script>
+        <script type='text/javascript'>
+
+        function init(){
+            window.flies = new BugController({'minBugs':3, 'maxBugs':5, 'mouseOver':'die'});
+            window.spiders = new SpiderController({'minBugs':3, 'maxBugs':5, 'maxSpeed':30, 'mouseOver':'die'});
+            var open = false;
+            var timeToDisappear = 10;
+            var close = function(){
+                $('#options').animate({left:"-300px"},1000);
+                open = false;
+                timeToDisappear = 10;
+            }
+            $('#killcount').html('0');
+            createSteppers();
+            $('#optionTab').click(function(){
+                                  $('#options').animate({left:(open ? "-300px" : "0px")},1000);
+                                  open = !open;
+                                  $('#countdown').html(timeToDisappear);
+                                  var disappear = function(){
+                                  if (timeToDisappear==0){
+                                  close();
+                                  }
+                                  else{
+                                  $('#countdown').html(timeToDisappear);
+                                  timeToDisappear--;
+                                  setTimeout(function(){disappear();},1000);
+                                  }
+                                  }
+                                  if (open){
+                                  setTimeout(function(){disappear();},1000);
+                                  }
+                                  
+                                  $('#optionPanel').click(function(){timeToDisappear = 10;});
+                                  });
+                                  $('#save').click(function(){
+                                                   var floptions = flies.options;
+                                                   flies.end();
+                                                   flies = new BugController(floptions);
+                                                   var spoptions = spiders.options;
+                                                   spiders.end();
+                                                   spiders = new SpiderController(spoptions);
+                                                   close();
+                                                   });
+        }
+        </script>
         <style>
             #optionTab{
                 background: url('tab.png');
@@ -17,6 +61,10 @@
                 -webkit-transform: rotate(90deg);
                 -webkit-transform-origin: center;
             }
+        #main{
+            height:100%;
+            width:100%;
+        }
         #killTab{
             position:absolute;
             right:20px;
@@ -91,50 +139,7 @@
         </style>
     </head>
     <body onload="init();">
-        <script type='text/javascript'>
-            var flies = new BugController({'minBugs':3, 'maxBugs':5, 'mouseOver':'die'});
-            var spiders = new SpiderController({'minBugs':3, 'maxBugs':5, 'maxSpeed':30, 'mouseOver':'die'});
-            var open = false;
-            var timeToDisappear = 10;
-            var close = function(){
-                $('#options').animate({left:"-300px"},1000);
-                open = false;
-                timeToDisappear = 10;
-            }
-            function init(){
-                $('#killcount').html('0');
-                createSteppers();
-                $('#optionTab').click(function(){
-                                          $('#options').animate({left:(open ? "-300px" : "0px")},1000);
-                                          open = !open;
-                                          $('#countdown').html(timeToDisappear);
-                                          var disappear = function(){
-                                              if (timeToDisappear==0){
-                                                  close();
-                                              }
-                                              else{
-                                                      $('#countdown').html(timeToDisappear);
-                                                      timeToDisappear--;
-                                                      setTimeout(function(){disappear();},1000);
-                                              }
-                                          }
-                                          if (open){
-                                            setTimeout(function(){disappear();},1000);
-                                          }
-                                          
-                                          $('#optionPanel').click(function(){timeToDisappear = 10;});
-                                      });
-                $('#save').click(function(){
-                                 var floptions = flies.options;
-                                 flies.end();
-                                 flies = new BugController(floptions);
-                                 var spoptions = spiders.options;
-                                 spiders.end();
-                                 spiders = new SpiderController(spoptions);
-                                 close();
-                                 });
-                }
-                                      </script>
+        <div id="main">
         <div id="options">
             <div id="optionTab">
                 <img id="settings" src="settings.png"></img>
@@ -167,6 +172,6 @@
             </div>
         </div>
         <div id="killTab">Kills: <div id="killcount" style="float:right"></div></div>
-        
+        </div>
     </body>
 </html>

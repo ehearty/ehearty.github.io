@@ -50,8 +50,8 @@ var BugDispatch = {
         canFly: true,
         canDie: true,
         numDeathTypes: 3,
-        monitorMouseMovement: false,
-        eventDistanceToBug: 40,
+        monitorMouseMovement: true,
+        eventDistanceToBug: 100,
         minTimeBetweenMultipy: 1000,
         mouseOver: 'random' // can be 'fly', 'flyoff' (if the bug can fly), die', 'multiply', 'nothing' or 'random'
     },
@@ -163,12 +163,13 @@ var BugDispatch = {
         }
 
         // add window event if required:
-        if (this.options.monitorMouseMovement) {
-            window.onmousemove = function() {
-                that.check_if_mouse_close_to_bug();
-            };
+        var checkIfClose = function(){
+            that.check_if_mouse_close_to_bug();
         }
-
+        if (this.options.monitorMouseMovement) {
+            $('#main').css('width',$(window).width()+'px').css('height',$(window).height()+'px');
+            document.getElementById('main').addEventListener('click',function(){checkIfClose()});
+        }
     },
 
     stop: function() {
@@ -202,11 +203,11 @@ var BugDispatch = {
         var that = this;
         if (thebug.bug) {
             if (thebug.bug.addEventListener) {
-                thebug.bug.addEventListener('mouseover', function(e) {
+                thebug.bug.addEventListener('click', function(e) {
                     that.on_bug(thebug);
                 });
             } else if (thebug.bug.attachEvent) {
-                thebug.bug.attachEvent('onmouseover', function(e) {
+                thebug.bug.attachEvent('onclick', function(e) {
                     that.on_bug(thebug);
                 });
             }
@@ -239,7 +240,7 @@ var BugDispatch = {
         for (i = 0; i < numBugs; i++) {
             var pos = this.bugs[i].getPos();
             if (pos) {
-                if (Math.abs(pos.top - posy) + Math.abs(pos.left - posx) < this.options.eventDistanceToBug && !this.bugs[i].flyperiodical) {
+                if (Math.abs(pos.top - posy) + Math.abs(pos.left - posx) < this.options.eventDistanceToBug) {
                     this.near_bug(this.bugs[i]);
                 }
             }
