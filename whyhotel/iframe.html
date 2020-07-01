@@ -12,7 +12,8 @@ THIS IS THE TEST IFRAME
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("demo").innerHTML = this.responseText;
+	let token = JSON.parse(this.responseText).message;
+    document.getElementById("demo").innerHTML = token;
   }
 };
 xhttp.open("GET", "https://cc46sd0feb.execute-api.us-east-1.amazonaws.com/dev/apaleo", true);
