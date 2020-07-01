@@ -17,7 +17,7 @@ let  xhttp = new XMLHttpRequest();
   		}
 	};
 	xhttp.open("GET", "https://api.apaleo.com/account/v1/accounts/current", true);
-	xhttp.setRequsetHeader('Authorization', 'Bearer '+token)
+	xhttp.setRequestHeader('Authorization', 'Bearer '+token)
 	xhttp.send();
 }
 let  xhttp = new XMLHttpRequest();
