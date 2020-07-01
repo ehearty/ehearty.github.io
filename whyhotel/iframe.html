@@ -15,11 +15,9 @@ xhttp.onreadystatechange = function() {
     document.getElementById("demo").innerHTML = this.responseText;
   }
 };
-xhttp.open("POST", "https://identity.apaleo.com/connect/token", true);
-xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xhttp.setRequestHeader("Authorization", "Basic SFJPWi1TUC1FSEVBUlRZVEVTVDpQWTVvTzRvamtyS2xVVFl5Q3JPc0VJQmV6dzM1Y2U=");
-xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-xhttp.send("grant_type=client_credentials");
+xhttp.open("GET", "https://cc46sd0feb.execute-api.us-east-1.amazonaws.com/dev/apaleo", true);
+xhttp.send();
+
 
 </script>
 </BODY>
