@@ -1,9 +1,6 @@
 [submodule "Swadl"]
 	path = Swadl
 	url = https://github.com/ehearty/Swadl.git
-[submodule "edsPage"]
-	path = edsPage
-	url = https://github.com/ehearty/edsPage.git
 [submodule "jor1k"]
 	path = jor1k
 	url = https://github.com/ehearty/jor1k
