@@ -5,5 +5,22 @@
 </HEAD>
 <BODY>
 THIS IS THE TEST IFRAME
+
+
+<div id = "demo" style="width:300px; height:300px">NOTHING HERE</div>
+
+
+<script>
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("demo").innerHTML = this.responseText;
+  }
+};
+xhttp.open("POST", "https://identity.apaleo.com/connect/token", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.setRequestHeader("Authorization", "Basic SFJPWi1TUC1FSEVBUlRZVEVTVDpQWTVvTzRvamtyS2xVVFl5Q3JPc0VJQmV6dzM1Y2U=");
+xhttp.send();
+
+</script>
 </BODY>
 </HTML>
