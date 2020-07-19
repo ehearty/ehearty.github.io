@@ -1,0 +1,19 @@
+{
+  "htmlFiles": [
+    {
+      "fileId": "0ByCIh5jga9SBY0g2Sm1FWFFjZjg",
+      "contentType": "text/html",
+      "name": "crtTest.html",
+      "path": "0ByCIh5jga9SBM2xhUjlqeGxVS0k"
+    }
+  ],
+  "cssFiles": [
+    {
+      "fileId": "0ByCIh5jga9SBOFNFdHItdER6NTg",
+      "contentType": "text/css",
+      "name": "reggie.css",
+      "path": "0ByCIh5jga9SBM2xhUjlqeGxVS0k/"
+    }
+  ],
+  "javascriptFiles": []
+}

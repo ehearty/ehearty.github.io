@@ -1,0 +1,332 @@
+@font-face {
+    font-family:invaders;
+    src:url('invaders.ttf');
+}
+@font-face {
+    font-family:computer;
+    src:url("Roses.ttf");
+}
+html{
+    width:320px;
+    height: 480px;
+    position:relative;
+    overflow:hidden;
+}
+body {
+    position:absolute;
+    color: white;
+    width: 320px;
+    height: 480px;
+    padding:0px;
+    margin:0px;
+    position:relative;
+    overflow:hidden;
+}
+
+.failed {
+    font-family:arial;
+    font-size:30px;
+    font-weight:bold;
+    top:75px;
+    position:absolute;
+    text-align:center;
+    width:100%;
+    transition:all 1.5s;
+}
+.bugContainer{
+    position:absolute;
+    top:70px;
+    left:0px;
+    width:100%;
+    height:200px;
+    overflow-y:scroll;
+}
+.cracked {
+    position:absolute;
+    z-index:4;
+    height:300px;
+    width:300px;
+    top:10px;
+    left:10px;
+    opacity:.65;
+    transition: all 1.5s;
+}
+
+.screen {
+    width: 300px;
+    height: 300px;
+    position:absolute;
+    margin:10px;
+    border: none;
+    overflow:hidden;
+}
+
+.titleRobot {
+    position:absolute;
+    height:180px;
+    bottom:0px;
+}
+.titleText {
+    position:absolute;
+    top:-280px;
+    left:0px;
+    width:100%;
+}
+.tapStart {
+    position:absolute;
+    top:180px;
+    left:180px;
+}
+.levelHeader {
+    position:relative;
+    top:0px;
+    text-align:center;
+    width:100%;
+    font-size:40px;
+    padding:3px;
+    border-style:dashed;
+    border-width:0px 0px 5px 0px;
+    margin-bottom:3px;
+}
+.levelName {
+    font-size:11px;
+    padding:3px;
+}
+.backToTitle {
+    position:absolute;
+    top:0px;
+    left:0px;
+    font-size:10px;
+    padding:5px;
+}
+.reggieRegSize {
+    position:absolute;
+    bottom:10px;
+    left:-75px;
+}
+.info {
+    top:15px;
+    font-family:arial;
+    width:90%;
+    color:#101010;
+    text-align:center;
+    font-size:15px;
+    margin-left:auto;
+    margin-top:15px;
+    margin-right:auto;
+}
+.projectorTop {
+    position:absolute;
+    top:75px;
+    width:280px;
+    left:10px;
+    background-color:black;
+    height:20px;
+    transition: all 1.5s;
+}
+.projectorScreen {
+    position:absolute;
+    width:260px;
+    top:95px;
+    left: 15px;
+    background-color:white;
+    height:0px;
+    border-width:0px 3px 3px 3px;
+    border-color:black;
+    border-style:solid;
+    overflow:hidden;
+    transition: all 1.5s;
+    background-image:url(floorShadow.png);
+    background-repeat:no-repeat;
+    background-position: center -75px;
+}
+.projectorScreen img, .projectorScreen div {
+    transition: all 1.5s;
+}
+.introBug {
+    position:absolute;
+    bottom:10px;
+    left:260px;
+    -webkit-transform:rotate(0deg);
+}
+.introBugContainer {
+    position:absolute;
+    bottom:10px;
+    left:260px;
+    width:300px;
+}
+.introBugSmall {
+    position:relative;
+    width:25px;
+    bottom:0px;
+    left:0px;
+    -webkit-transform:rotate(0deg);
+}
+.introBit {
+    position:absolute;
+    bottom:10px;
+    left:155px;
+    -webkit-transform:rotate(0deg);
+}
+.laserPointer {
+    -webkit-perspective:15px;
+    z-index:4;
+    position:absolute;
+    top:235px;
+    left:156px;
+}
+.bigLaser {
+    width:8px;
+    background-color:red;
+    border-color:red;
+    border-width:5px;
+    border-style:dashed;
+    -webkit-perspective:500px;
+    transition: all 1.5s;
+    -webkit-transform-origin:top center;
+}
+.laser {
+    position:absolute;
+    top:100px;
+    left:90px;
+    width:0px;
+    background-color:red;
+    border-color:yellow;
+    border-style:dashed;
+    border-width:1px;
+    -webkit-transform:rotate(15deg);
+    -webkit-transform-origin:top left;
+    height:1px;
+}
+.tip {
+    font-size:11px;
+    padding:3px;
+    position:absolute;
+    top:55px;
+    left:320px;
+    white-space:nowrap;
+    transition: all 15s linear;
+}
+.smallBugContainer {
+    width:12px;
+}
+.screenLines {
+    margin-top:40px;
+    font-size:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+}
+.screenLines img {
+    float:left;
+    width:16px;
+    margin:1px;
+    transition: all .3s;
+}
+.screenLines td {
+    text-align:right;
+    position:relative;
+    width:210px;
+}
+.winner {
+    font-size:100px;
+    font-family:arial;
+    font-weight:bold;
+    position:absolute;
+    left:-300px;
+    top: 150px;
+    color: lime;
+    transition: all 2s;
+}
+.loser {
+    font-size:100px;
+    font-family:arial;
+    font-weight:bold;
+    position:absolute;
+    left:-300px;
+    top: 150px;
+    color: red;
+    transition: all 2s;
+}
+.reggieMad {
+    width:264px;
+    position:absolute;
+    bottom:-300px;
+    transition: all 2s;
+    left:25px;
+}
+.input {
+    position:absolute;
+    bottom:0px;
+    padding:3px;
+    left:0px;
+    font-size:14px;
+}
+.userDisplay {
+    position:absolute;
+    bottom:3px;
+    left:60px;
+    font-size:14px;
+}
+.buttons {
+    width:340px;
+    height:185px;
+    margin-left:-10px;
+    margin-top:-21px;
+    background-image: linear-gradient(180deg, black, red);
+    -webkit-transform: rotateX(30deg);
+    background-color:black;
+    box-shadow:0px 15px 20px 0px rgba(255, 255, 255, .5) inset;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.button {
+    background-color:white;
+    position:absolute;
+    overflow:hidden;
+    width:45px;
+    height:45px;
+    border-radius:100%;
+    box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.button div {
+    position:absolute;
+    width: 30px;
+    height: 30px;
+    border-radius:100%;
+    padding:3px;
+    box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.5), 0px 1px 3px 0px white inset;
+    left:5px;
+    top:3px;
+    font-size:20px;
+    line-height:35px;
+    text-align:center;
+    text-shadow: 0px -2px 0px rgba(0, 0, 0, .5), 0px 1px 1px white;
+}
+.button .operator {
+    height:15px;
+    width:15px;
+    line-height:20px;
+    background-color:inherit;
+    color:inherit;
+}
+.transparent {
+    height:100%;
+    width:100%;
+    left:0px;
+    top:0px;
+}
+.buttons img {
+    position:absolute;
+}
+.buttons .disabled {
+    -webkit-filter:brightness(50%);
+}
+#switch:checked ~ .container .overlay {
+    -webkit-animation: overlay-anim 5s linear;
+    -webkit-animation-fill-mode: forwards;
+}
