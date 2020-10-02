@@ -1,0 +1,329 @@
+<html>
+    <head>
+    <script src="jquery.js"></script>
+    <script>
+        var userInput = '';
+        var inputMap = [];
+        var arrayIndex = 0;
+        var success = true;
+        inputMap['a']='bugr';
+        inputMap['b']='bugy';
+        inputMap['c']='bugb';
+        inputMap['z']='bit';
+        var inputArray = [];
+        var level = 1;
+        
+        function advance(){
+            inputArray=[];
+            window['level'+level]();
+            reset();
+            level++;
+        }
+        //level 1 basic controls
+        function level1(){
+            inputArray[0]='a';
+            inputArray[1]='z';
+        }
+    
+        function level2(){
+            inputArray[0]='aaa';
+            inputArray[1]='z';
+        }
+        
+        function level3(){
+            inputArray[0]='aaa';
+            inputArray[1]='za';
+        }
+        
+        function level4(){
+        inputArray[0]='abab';
+        inputArray[1]='baba';
+        inputArray[2]='aaab';
+        inputArray[3]='zzzz';
+        }
+       
+       function level5(){
+        inputArray[0]='abab';
+        inputArray[1]='baba';
+        inputArray[2]='aaab';
+        inputArray[3]='z';
+       }
+       
+       function level6(){ 
+        inputArray[0]='abab';
+        inputArray[1]='baba';
+        inputArray[2]='aaab';
+        inputArray[3]='zz';
+       }
+        
+        //solution is ba+b*a+
+        function level7(){
+        inputArray[0]='abaaaab';
+        inputArray[1]='ababab';
+        inputArray[2]='ababaab';
+        inputArray[3]='azb';
+        }
+    
+        var animationQueue = [];
+        var animationIndex = 0;
+        
+        var goal = inputArray[inputArray.length-1];
+        
+        function reset(){
+            empty();
+            $('.userEnter').html('submit');
+            var screenTable = $('.screen .screenLines');
+            var printout = $('.printField .screenLines');
+            screenTable.html('');
+            printout.html('');
+            for (var i=0; i<inputArray.length; i++){
+                var input = inputArray[i];
+                var line = '';
+                for (var j=0; j<input.length; j++)
+                {
+                    line+='<div class="lineItem '+inputMap[input[j]]+'" val="'+inputMap[input[j]]+'"></div>';
+                }
+                screenTable.append('<tr><td class="input'+i+'">'+line+'</td><td class="answer'+i+'"></td></tr>');
+                if (i==(inputArray.length-1)){
+                    goal=input;
+                    printout.append('<tr><td class="line'+i+' printout">goal-></td></tr>');
+                }
+                else printout.append('<tr><td class="line'+i+' printout">line'+(i+1)+'-></td></tr>');
+            }
+        }
+        function add(el){
+            userInput+=$(el).attr('val');
+            $('.userDisplay').html(userInput);
+        }
+        function empty(){
+            userInput='';
+            $('.userDisplay').html(userInput);
+        }
+        function undo(){
+            userInput = userInput.substring(0,userInput.length-1);
+            $('.userDisplay').html(userInput);
+        }
+        function animateReplacement(matched,offset){
+            if (matched.length==0) return '';
+            var lineItems = $('.input'+arrayIndex+' .lineItem');
+            var total=matched.length-1;
+            for (var i=0; i<matched.length; i++){
+                animationQueue[animationIndex++]=$(lineItems[offset+i]);
+            }
+            animationQueue[animationIndex++]=$(lineItems[offset+total]);
+            return 'z';
+        }
+        function submit(){
+            if (userInput.length<=0)return;
+            success = true;
+            animationQueue = [];
+            animationIndex = 0;
+            for (var i=0; i<(inputArray.length-1); i++){
+                arrayIndex=i;
+                var input = inputArray[i];
+                var output = input.replace(new RegExp(userInput, 'g'),animateReplacement);
+              //  $('.answer'+i).html(output);
+                if (output==goal){
+                    $('.line'+i).css('color','green');
+                }
+                else {
+                    success=false;
+                    $('.line'+i).css('color','red');
+                    $('.userEnter').html('reset');
+                }          
+            }
+            animationIndex = 0;
+            showResults();
+        }
+        
+        function showResults(){
+            if (animationIndex < animationQueue.length)
+            {
+                var el = animationQueue[animationIndex];
+                el.removeClass(el.attr('val'));
+                el.addClass('bit');
+                animationIndex++;
+                el.toggle(400,function(){setTimeout(function(){showResults();},10);});
+            }
+            else if (success){
+                advance();
+            }
+        }
+        
+        function init(){
+            $('.keyboard td').append('<img src="button.png" class="button"/>');
+            $('.add').click(function(){add(this);});
+            advance();
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: computer;
+                src: url('Paskowy.ttf');
+              }
+        @font-face {
+            font-family: printout;
+                src: url('Roses.ttf');
+        }
+        body{
+            height:480px;
+            width:320px;
+            background-image:url('reggieBackground.jpg');
+            background-repeat:no-repeat;
+            position:relative;
+        }
+        .keyboard{
+            position:absolute;
+            top:220px;
+            left:3px;
+            width:300px;
+            height:250px;
+        }
+        .keyboard tr{
+            height:25%;
+        }
+        .keyboard td{
+            position:relative;
+            text-align:center;
+            font-family:computer;
+            font-size:40px;
+            width:25%;
+            background-repeat:no-repeat;
+        }
+        .button {
+            height:100%;
+            width:100%;
+            position:absolute;
+            top:0px;
+            left:0px;
+        }
+        .bugr {
+            background-image:url("bug.png");
+            background-position:center center;
+        }
+        .bugy {
+            background-image:url("yBug.png");
+            background-position:center center;
+        }
+        .bugb {
+            background-image:url("bBug.png");
+            background-position:center center;
+        }        
+        .bit {
+            background-image:url("bit.png");
+            background-position:center center;
+        }
+        .reggie{
+            background-image:url("reggie.png");
+            background-position:left center;
+            background-size:contain;
+        }
+        .inputContainer{
+            position:absolute;
+            top:185px;
+            left:8px;
+            height:15px;
+            width:100%;
+            left:8px;
+            color:white;
+        }
+        .textContainer{
+            font-family:computer;
+            font-size:32px;
+            position:absolute;
+            top:0px;
+            left:0px;
+            height:15px;
+            width:100%;
+            overflow:hidden;
+        }
+        .text{
+            position:absolute;
+            bottom:0px;
+        }
+        .printField{
+            position:absolute;
+            top:25px;
+            left:5px;
+            width:70px;
+            height:115px;
+        }
+        .printout{
+            font-family:printout;
+            font-size:10px;
+        }
+        .screen{
+            position:absolute;
+            top:25px;
+            left:85px;
+            width:215px;
+            height:130px;
+        }
+        .screenLines{
+            width:100%;
+            max-height:100%;
+            position:absolute;
+            left:0px;
+            top:0px;
+        }
+        .screenLines tr{
+            height:25px;
+        }
+        .lineItem{
+            float:left;
+            height:25px;
+            width:25px;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        .userDisplay{
+            position:absolute;
+            left:45px;
+            bottom:0px;
+            color:white;
+        }
+    </style>
+    </head>
+
+    <body onload="init()">
+    <div class="printField">
+        <table class="screenLines"></table>
+    </div>
+    <div class="inputContainer">
+        <div class="textContainer">
+            <div class="text">input:</div>
+            <div class='userDisplay'></div>
+        </div>
+    </div>
+    <div class="screen">
+        <table class="screenLines"></table>
+    </div>
+    <table class='keyboard' style="table-layout:fixed;">
+        <tr>
+            <td onclick="empty()">clear</td>
+            <td class="add" val="*">*</td>
+            <td class="add" val=".">.</td>  
+            <td class="add" val="+">+</td>
+            <td onclick="undo()">undo</td>                
+        </tr>
+        <tr>
+            <td class="bugr add" val="a"></td>
+            <td class="bugy add" val="b"></td>
+            <td class="bugb add" val="c"></td>
+            <td colspan="2">locked</td>             
+        </tr>
+        <tr>
+            <td>locked</td>
+            <td>locked</td>
+            <td>locked</td>
+            <td colspan="2">locked</td>               
+        </tr>
+        <tr>
+            <td>home</td>
+            <td onclick="reset()">reset</td>
+            <td class="reggie userEnter" colspan="3" onclick="window[$(this).html()]()">submit</td>                
+        </tr>
+    </table>
+    </body>
+
+</html>
