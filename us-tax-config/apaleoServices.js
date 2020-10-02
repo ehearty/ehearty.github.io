@@ -1,9 +1,4 @@
 const e = React.createElement;
-var myStyles;
-
-const createStyles = function(){
-  myStyles = useStyles();
-}
 
 class Auth extends React.Component {
   constructor(props) {
@@ -18,26 +13,26 @@ class Auth extends React.Component {
 
   async getBearer() {
     if (!this.state.bearer){
-    await fetch("https://cc46sd0feb.execute-api.us-east-1.amazonaws.com/dev/apaleo")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.state.bearer = result.message;
-          this.setState({
-            bearer: result.message,
-            isLoaded: true
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+      await fetch("https://cc46sd0feb.execute-api.us-east-1.amazonaws.com/dev/apaleo")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.state.bearer = result.message;
+            this.setState({
+              bearer: result.message,
+              isLoaded: true
+            });
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
     }
     return this.state.bearer;
   }
@@ -46,7 +41,7 @@ class Auth extends React.Component {
 var auth = new Auth();
 auth.getBearer().then(r => {
 
-console.log('Returning ' + auth.state.bearer);
+  console.log('Returning ' + auth.state.bearer);
 
 });
 
@@ -54,35 +49,29 @@ class TaxForm extends React.Component {
   constructor(props) {
     super(props);
     this.account = props.account;
-    this.state = {taxes: {city: false, state: false}};
+    this.state = {city: false, state: false};
   }
 
+  handleChange = (event) => {
+    this.setState({ ...this.state, [event.target.name]: event.target.checked });
+  };
+
   render() {
-    let element = e(
+    let element = e('div', {class: 'card'}, [e(
       FormControl, {component: 'fieldset'},
       [e(FormLabel, {component: 'legend'}, this.account.name),
-      e(
-        FormGroup, {},
-        Object.keys(this.state.taxes).map(
-          t => e(FormControlLabel,
-                                   {control: e(Checkbox,{
-                                     checked: this.state.taxes[t],
-                                     name: t
-                                   } ), label: t}, t))
-      )]);
+       e(
+         FormGroup, {},
+         Object.keys(this.state).map(
+           t => e(FormControlLabel,
+                  {control: e(Checkbox,{
+                    checked: this.state[t],
+                    name: t
+                  } ), onChange: this.handleChange, label: t}, t))
+       )])]);
     return element;
   }
 }
-
-const TaxComp = MaterialUI.withStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-}))(props => e(TaxForm, {color: 'default', ...props}));
-
 
 
 class SubAccounts extends React.Component {
@@ -98,10 +87,10 @@ class SubAccounts extends React.Component {
   componentDidMount() {
     auth.getBearer()
       .then(b => fetch("https://api.apaleo.com/settings/v0-nsfw/sub-accounts?propertyId=test&pageNumber=1&pageSize=100", {
-    headers: {
-      'Content-Type': 'application/json',
-'Authorization': 'Bearer ' + b
-    }}))
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + b
+        }}))
       .then(res => res.json())
       .then(
         (result) => {
@@ -130,7 +119,7 @@ class SubAccounts extends React.Component {
       return e('div', {}, `Loading...`);
     } else {
       return e(
-        'div', {}, items.map(item => e(TaxComp, {account: item})));
+        'div', {}, items.map(item => e(TaxForm, {account: item})));
     }
   }
 }
