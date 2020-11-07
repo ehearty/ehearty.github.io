@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "title": "I wonder what this'll do",
+      "actions": [
+        {
+          "type": "IFRAME",
+          "width": 890,
+          "height": 748,
+          "uri": "https://goo.gl/maps/mXPFcWUgkiQ6o3jZ7",
+          "label": "view map",
+          "associatedObjectProperties": []
+        }
+      ]
+    }
+  ]
+}
