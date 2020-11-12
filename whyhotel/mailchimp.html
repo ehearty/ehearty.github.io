@@ -18,7 +18,7 @@ let sx = window.screenX + 250;
 let sy = window.screenY;
 let oh = window.outerHeight;
 let vv = window.visualViewport;
-let at = window.screen.availTop;
+let at = window.screen.availTop + 13;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
 width=${vv.width},height=${vv.height - at},left=${sx},top=${sy + (oh - h)}`;
