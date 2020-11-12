@@ -15,6 +15,7 @@ TO OPEN MAILCHIMP.
 var childWin = null;
 
 window.addEventListener("visibilitychange", async event => {
+  debugger;
   event.preventDefault();
   console.log("visibilityChange");
   await childWin.close();
@@ -31,6 +32,7 @@ window.addEventListener("freeze", async event => {
 }, false);
 
 window.addEventListener("beforeunload", async event => {
+  debugger;
   event.preventDefault();
   console.log("beforeunload");
   await childWin.close();
