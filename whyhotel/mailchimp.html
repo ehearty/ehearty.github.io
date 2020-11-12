@@ -19,6 +19,7 @@ window.addEventListener("beforeunload", event => {
 }, false);
 
 window.addEventListener("pagehide", event => {
+  console.log("INSIDE PAGE HIDE");
   childWin.close();
 }, false);
 
