@@ -13,9 +13,12 @@ TO OPEN MAILCHIMP.
 
 var w = window.innerWidth;
 var h = window.innerHeight;
+var sx = window.screenX;
+var sy = window.screenY;
+var oh = window.outerHeight;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=${w*.8},height=${h*.8},left=${w*.1},top=${h*.1}`;
+width=${w},height=${h},left=${sx},top=${sy + (oh-h)}`;
 
 function openMailChimp(){open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
 
