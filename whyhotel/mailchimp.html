@@ -3,16 +3,24 @@
 <HEAD>
 </HEAD>
 <BODY>
-
-CLICK <div style="color:red;cursor: pointer;" onclick="openMailChimp()">HERE</> TO OPEN MAILCHIMP. PLEASE CLOSE THE WINDOW WHEN YOU ARE FINISHED.
-
+<p style="position:absolute; top:20%;width:100%;text-align:center">
+CLICK <span style="color:red;cursor: pointer;" onclick="openMailChimp()">HERE</span>
+TO OPEN MAILCHIMP. 
+<br/>PLEASE CLOSE THE WINDOW WHEN YOU ARE FINISHED.
+</p>
 <script>
 'use strict';
 
+var w = window.innerWidth;
+var h = window.innerHeight;
+
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=80%,height=80%,left=50%,top=50%`;
+width=${w*.8},height=${h*.8},left=${w*.1},top=${h*.1}`;
 
 function openMailChimp(){open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
+
+
+openMailChimp();
 </script>
 </BODY>
 </HTML>
