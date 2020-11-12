@@ -22,7 +22,7 @@ let vv = window.visualViewport;
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
 width=${vv.width},height=${vv.height - 50},left=${sx},top=${sy + (oh - h)}`;
 
-open('https://us2.admin.mailchimp.com/', 'mailchimp', params);
+open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params);
 };
 
 setTimeout(function(){openMailChimp();},500);
