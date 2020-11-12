@@ -20,7 +20,7 @@ var oh = window.outerHeight;
 vv = window.visualViewport;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=${vv.width},height=${vv.height},left=${sx},top=${sy + (oh - h)}`;
+width=${vv.width},height=${vv.height},left=${sx},top=${oh - h}`;
 
 open('https://us2.admin.mailchimp.com/', 'mailchimp', params);
 };
