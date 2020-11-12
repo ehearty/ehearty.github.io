@@ -18,12 +18,12 @@ var sy = window.screenY;
 var oh = window.outerHeight;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=${w},height=${h},left=${sx},top=${sy + (oh-h)}`;
+width=${window.innerWidth - 250},height=${window.innerHeight},left=${window.screenX + 250},top=${window.screenY + (window.outerHeight-window.innerHeight)}`;
 
 function openMailChimp(){open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
 
 
-openMailChimp();
+window.onload = openMailChimp;
 </script>
 </BODY>
 </HTML>
