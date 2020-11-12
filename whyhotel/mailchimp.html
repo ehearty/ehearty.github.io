@@ -14,7 +14,18 @@ TO OPEN MAILCHIMP.
 
 var childWin = null;
 
+window.addEventListener("visibilitychange", event => {
+  console.log("visibilityChange");
+  childWin.close();
+}, false);
+
+window.addEventListener("freeze", event => {
+  console.log("freeze");
+  childWin.close();
+}, false);
+
 window.addEventListener("beforeunload", event => {
+  console.log("beforeunload");
   childWin.close();
 }, false);
 
