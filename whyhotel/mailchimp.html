@@ -25,24 +25,24 @@ window.addEventListener("visibilitychange", async event => {
 window.addEventListener("freeze", async event => {
   event.preventDefault();
   console.log("freeze");
-  childWin = null;
   await childWin.close();
+  childWin = null;
   return false;
 }, false);
 
 window.addEventListener("beforeunload", async event => {
   event.preventDefault();
   console.log("beforeunload");
-  childWin = null;
   await childWin.close();
+  childWin = null;
   return false;
 }, false);
 
 window.addEventListener("pagehide", async event => {
   event.preventDefault();
   console.log("INSIDE PAGE HIDE");
-  childWin = null;
   await childWin.close();
+  childWin = null;
   return false;
 }, false);
 
