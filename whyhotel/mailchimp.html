@@ -14,24 +14,24 @@ TO OPEN MAILCHIMP.
 
 var childWin = null;
 
-window.addEventListener("visibilitychange", event => {
+window.addEventListener("visibilitychange", async event => {
   console.log("visibilityChange");
-  childWin.close();
+  await childWin.close();
 }, false);
 
-window.addEventListener("freeze", event => {
+window.addEventListener("freeze", async event => {
   console.log("freeze");
-  childWin.close();
+  await childWin.close();
 }, false);
 
-window.addEventListener("beforeunload", event => {
+window.addEventListener("beforeunload", async event => {
   console.log("beforeunload");
-  childWin.close();
+  await childWin.close();
 }, false);
 
-window.addEventListener("pagehide", event => {
+window.addEventListener("pagehide", async event => {
   console.log("INSIDE PAGE HIDE");
-  childWin.close();
+  await childWin.close();
 }, false);
 
 
