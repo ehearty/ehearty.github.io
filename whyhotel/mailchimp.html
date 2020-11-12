@@ -24,8 +24,7 @@ width=${w},height=${h},left=${sx},top=${sy + (oh - h)}`;
 open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
 }
 
-
-window.onload = openMailChimp;
+setTimeout(function(){openMailChimp();},500);
 </script>
 </BODY>
 </HTML>
