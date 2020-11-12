@@ -11,6 +11,7 @@ TO OPEN MAILCHIMP.
 <script>
 'use strict';
 
+function openMailChimp(){
 var w = window.innerWidth;
 var h = window.innerHeight;
 var sx = window.screenX + 250;
@@ -18,9 +19,10 @@ var sy = window.screenY;
 var oh = window.outerHeight;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=${window.innerWidth - 250},height=${window.innerHeight},left=${window.screenX + 250},top=${window.screenY + (window.outerHeight-window.innerHeight)}`;
+width=${w},height=${h},left=${sx},top=${sy + (oh - h)}`;
 
-function openMailChimp(){open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
+open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
+}
 
 
 window.onload = openMailChimp;
