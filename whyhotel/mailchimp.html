@@ -15,23 +15,31 @@ TO OPEN MAILCHIMP.
 var childWin = null;
 
 window.addEventListener("visibilitychange", async event => {
+  event.preventDefault();
   console.log("visibilityChange");
   await childWin.close();
+  return false;
 }, false);
 
 window.addEventListener("freeze", async event => {
+  event.preventDefault();
   console.log("freeze");
   await childWin.close();
+  return false;
 }, false);
 
 window.addEventListener("beforeunload", async event => {
+  event.preventDefault();
   console.log("beforeunload");
   await childWin.close();
+  return false;
 }, false);
 
 window.addEventListener("pagehide", async event => {
+  event.preventDefault();
   console.log("INSIDE PAGE HIDE");
   await childWin.close();
+  return false;
 }, false);
 
 
