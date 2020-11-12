@@ -17,9 +17,10 @@ var h = window.innerHeight;
 var sx = window.screenX + 250;
 var sy = window.screenY;
 var oh = window.outerHeight;
+vv = window.visualViewport;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
-width=${w},height=${h},left=${sx},top=${sy + (oh - h)}`;
+width=${vv.width},height=${vv.height},left=${sx},top=${sy + (oh - h)}`;
 
 open('https://us2.admin.mailchimp.com/', 'mailchimp', params);
 };
