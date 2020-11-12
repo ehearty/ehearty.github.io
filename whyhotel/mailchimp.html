@@ -3,17 +3,15 @@
 </HEAD>
 <BODY>
 
-CLICK <a onclick="openMailChimp()">HERE</> TO OPEN MAILCHIMP. PLEASE CLOSE THE WINDOW WHEN YOU ARE FINISHED.
-
-<div id = "demo" style="width:300px; height:300px">NOTHING HERE</div>
+CLICK <div style="color:red;cursor: pointer;" onclick="openMailChimp()">HERE</> TO OPEN MAILCHIMP. PLEASE CLOSE THE WINDOW WHEN YOU ARE FINISHED.
 
 <script>
 'use strict';
 
-let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-width=600,height=300,left=100,top=100`;
+let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
+width=80%,height=80%,left=50%,top=50%`;
 
-function openMailChimp(){open('/', 'test', params);};
+function openMailChimp(){open('https://us2.admin.mailchimp.com/', 'mailchimp', params);};
 </script>
 </BODY>
 </HTML>
