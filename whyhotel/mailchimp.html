@@ -21,7 +21,7 @@ window.addEventListener("visibilitychange", async event => {
   await childWin.close();
   childWin = null;
   return false;
-}, false);
+}, true);
 
 window.addEventListener("freeze", async event => {
   event.preventDefault();
@@ -29,7 +29,7 @@ window.addEventListener("freeze", async event => {
   await childWin.close();
   childWin = null;
   return false;
-}, false);
+}, true);
 
 window.addEventListener("beforeunload", async event => {
   debugger;
@@ -38,7 +38,7 @@ window.addEventListener("beforeunload", async event => {
   await childWin.close();
   childWin = null;
   return false;
-}, false);
+}, true);
 
 window.addEventListener("pagehide", async event => {
   event.preventDefault();
@@ -46,7 +46,7 @@ window.addEventListener("pagehide", async event => {
   await childWin.close();
   childWin = null;
   return false;
-}, false);
+}, true);
 
 
 function openMailChimp(){
