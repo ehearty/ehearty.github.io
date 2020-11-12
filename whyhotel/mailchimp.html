@@ -19,7 +19,7 @@ let sy = window.screenY;
 let oh = window.outerHeight;
 let vv = window.visualViewport;
 
-let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
+let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
 width=${vv.width},height=${vv.height - 50},left=${sx},top=${sy + (oh - h)}`;
 
 open('https://us2.admin.mailchimp.com/', 'mailchimp', params);
