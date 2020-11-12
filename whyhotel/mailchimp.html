@@ -12,12 +12,12 @@ TO OPEN MAILCHIMP.
 'use strict';
 
 function openMailChimp(){
-var w = window.innerWidth;
-var h = window.innerHeight;
-var sx = window.screenX + 250;
-var sy = window.screenY;
-var oh = window.outerHeight;
-vv = window.visualViewport;
+let w = window.innerWidth;
+let h = window.innerHeight;
+let sx = window.screenX + 250;
+let sy = window.screenY;
+let oh = window.outerHeight;
+let vv = window.visualViewport;
 
 let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
 width=${vv.width},height=${vv.height},left=${sx},top=${oh - h}`;
