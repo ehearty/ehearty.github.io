@@ -18,6 +18,11 @@ window.addEventListener("beforeunload", event => {
   childWin.close();
 }, false);
 
+window.addEventListener("pagehide", event => {
+  childWin.close();
+  }
+}, false);
+
 
 function openMailChimp(){
 let w = window.innerWidth;
@@ -36,6 +41,5 @@ childWin = open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params)
 
 setTimeout(function(){openMailChimp();},500);
 </script>
-<button onclick="childWin.close()";>CLOSE ME</button>
 </BODY>
 </HTML>
