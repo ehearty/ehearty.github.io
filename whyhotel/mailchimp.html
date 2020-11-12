@@ -11,6 +11,14 @@ TO OPEN MAILCHIMP.
 <script>
 'use strict';
 
+
+var childWin = null;
+
+window.addEventListener("beforeunload", event => {
+  childWin.close();
+}, false);
+
+
 function openMailChimp(){
 let w = window.innerWidth;
 let h = window.innerHeight;
@@ -22,10 +30,12 @@ let vv = window.visualViewport;
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
 width=${vv.width},height=${vv.height - 50},left=${sx},top=${sy + (oh - h)}`;
 
-open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params);
+childWin = open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params);
 };
+
 
 setTimeout(function(){openMailChimp();},500);
 </script>
+<button onclick="childWin.close()";>CLOSE ME</button>
 </BODY>
 </HTML>
