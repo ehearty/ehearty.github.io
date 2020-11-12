@@ -18,12 +18,14 @@ window.addEventListener("visibilitychange", async event => {
   event.preventDefault();
   console.log("visibilityChange");
   await childWin.close();
+  childWin = null;
   return false;
 }, false);
 
 window.addEventListener("freeze", async event => {
   event.preventDefault();
   console.log("freeze");
+  childWin = null;
   await childWin.close();
   return false;
 }, false);
@@ -31,6 +33,7 @@ window.addEventListener("freeze", async event => {
 window.addEventListener("beforeunload", async event => {
   event.preventDefault();
   console.log("beforeunload");
+  childWin = null;
   await childWin.close();
   return false;
 }, false);
@@ -38,6 +41,7 @@ window.addEventListener("beforeunload", async event => {
 window.addEventListener("pagehide", async event => {
   event.preventDefault();
   console.log("INSIDE PAGE HIDE");
+  childWin = null;
   await childWin.close();
   return false;
 }, false);
@@ -54,7 +58,9 @@ let vv = window.visualViewport;
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,titlebar=no,menubar=no,
 width=${vv.width},height=${vv.height - 50},left=${sx},top=${sy + (oh - h)}`;
 
-childWin = open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params);
+if (!childWin){
+	childWin = open('https://us2.admin.mailchimp.com/audience', 'mailchimp', params);
+};
 };
 
 
