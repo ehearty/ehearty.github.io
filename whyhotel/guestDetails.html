@@ -1,19 +1,25 @@
 <HTML>
 <HEAD>
+<style>
+body {padding:0px;margin:0px;}
+</style>
 </HEAD>
 <BODY>
 
-<iframe id='hubspot' style="height:100%;width:100%;padding:0px;margin:0px;overflow:hidden;position:absolute;top:-50px"></iframe>
+<iframe id='hubspot' style="height:100%;width:100%;padding:0px;margin:0px;overflow:hidden;position:absolute;top:-55px"></iframe>
 
 
 <script>
 const urlParams = new URLSearchParams(window.location.search);
 const reservationId = urlParams.get('reservationId');
 
+const h = window.innerHeight;
+
 function makeAPIRequest(token){
 let  xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
   	if (this.readyState == 4 && this.status == 200) {
+		document.getElementById('hubspot').style.height = h + 55 + 'px';
     		document.getElementById('hubspot').src = 'https://app.hubspot.com/contacts/8738389/contact/' + JSON.parse(this.responseText).primaryGuest.email;
   		}
 	};
