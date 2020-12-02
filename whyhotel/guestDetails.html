@@ -2,10 +2,8 @@
 <HEAD>
 </HEAD>
 <BODY>
-THIS IS THE TEST IFRAME
 
-
-<div id = "demo" style="width:300px; height:300px">NOTHING HERE</div>
+<iframe id='hubspot' style="height:100%;width:100%;position:absolute;top:-30px"></iframe>
 
 
 <script>
@@ -16,8 +14,7 @@ function makeAPIRequest(token){
 let  xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
   	if (this.readyState == 4 && this.status == 200) {
-    		document.getElementById("demo").innerHTML = this.responseText;
-		window.location.href = 'https://app.hubspot.com/contacts/8738389/contact/' + JSON.parse(this.responseText).primaryGuest.email;
+    		document.getElementById('hubspot').src = 'https://app.hubspot.com/contacts/8738389/contact/' + JSON.parse(this.responseText).primaryGuest.email;
   		}
 	};
 	xhttp.open("GET", "https://api.apaleo.com/booking/v1/reservations/"+reservationId, true);
