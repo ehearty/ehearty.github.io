@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+THIS IS THE TEST IFRAME
+
+
+<div id = "demo" style="width:300px; height:300px">NOTHING HERE</div>
+
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const reservationId = urlParams.get('reservationId');
+
+function makeAPIRequest(token){
+let  xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+  	if (this.readyState == 4 && this.status == 200) {
+    		document.getElementById("demo").innerHTML = this.responseText;
+  		}
+	};
+	xhttp.open("GET", "https://api.apaleo.com/booking/v1/reservations/"+reservationId, true);
+	xhttp.setRequestHeader('Authorization', 'Bearer '+token)
+	xhttp.send();
+}
+let  xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+	let token = JSON.parse(this.responseText).message;
+	makeAPIRequest(token)
+  }
+};
+xhttp.open("GET", "https://cc46sd0feb.execute-api.us-east-1.amazonaws.com/dev/apaleo", true);
+xhttp.send();
+
+
+</script>
+</BODY>
+</HTML>
